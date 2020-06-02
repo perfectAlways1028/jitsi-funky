@@ -22,7 +22,7 @@ const ROOT_STATE_STORAGE_KEY = 'root'
 export async function createEnvironment () {
   const env = new Environment()
 
-  //env.useOverrides = __DEV__ ? true : false
+  // env.useOverrides = __DEV__ ? true : false
   env.useOverrides = false
 
   env.ssl = true
@@ -62,7 +62,7 @@ export async function setupRootStore () {
   const env = await createEnvironment()
   try {
     // load data from storage
-    //data = (await storage.load(ROOT_STATE_STORAGE_KEY)) || {}
+    // data = (await storage.load(ROOT_STATE_STORAGE_KEY)) || {}
     data = {}
     rootStore = RootStoreModel.create(data, env)
   } catch (e) {
@@ -81,7 +81,7 @@ export async function setupRootStore () {
 
   // track changes & save to storage
   onSnapshot(rootStore, snapshot => {
-    //storage.save(ROOT_STATE_STORAGE_KEY, snapshot)
+    // storage.save(ROOT_STATE_STORAGE_KEY, snapshot)
   })
 
   return rootStore

@@ -3,6 +3,13 @@ package com.jitsifunky;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.calendarevents.CalendarEventsPackage;
+import com.oblador.vectoricons.VectorIconsPackage;
+import com.zmxv.RNSound.RNSoundPackage;
+import com.oney.WebRTCModule.WebRTCModulePackage;
+import com.corbt.keepawake.KCKeepAwakePackage;
+import com.dylanvann.fastimage.FastImageViewPackage;
+import com.ocetnik.timer.BackgroundTimerPackage;
 import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
 import org.devio.rn.splashscreen.SplashScreenReactPackage;
 import com.reactcommunity.rnlanguages.RNLanguagesPackage;
@@ -27,6 +34,13 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new CalendarEventsPackage(),
+            new VectorIconsPackage(),
+            new RNSoundPackage(),
+            new WebRTCModulePackage(),
+            new KCKeepAwakePackage(),
+            new FastImageViewPackage(),
+            new BackgroundTimerPackage(),
             new RNGestureHandlerPackage(),
             new SplashScreenReactPackage(),
             new RNLanguagesPackage(),

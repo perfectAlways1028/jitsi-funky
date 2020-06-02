@@ -115,8 +115,18 @@ android {
             include "armeabi-v7a", "x86"
         }
     }
+    signingConfigs {
+        release {
+            storeFile file('jitsi-funky.keystore')
+            storePassword '123456'
+            keyAlias 'funky'
+            keyPassword '123456'
+        }
+    }
+
     buildTypes {
         release {
+            signingConfig signingConfigs.release
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
         }
@@ -134,9 +144,20 @@ android {
             }
         }
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    } 
 }
 
 dependencies {
+    compile project(':react-native-calendar-events')
+    compile project(':react-native-vector-icons')
+    compile project(':react-native-sound')
+    compile project(':react-native-webrtc')
+    compile project(':react-native-keep-awake')
+    compile project(':react-native-fast-image')
+    compile project(':react-native-background-timer')
     compile project(':react-native-gesture-handler')
     compile project(':react-native-splash-screen')
     compile project(':react-native-languages')

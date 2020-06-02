@@ -7,6 +7,7 @@
 // side effect of breaking other tooling like mobile-center and react-native-rename.
 //
 // It's easier just to leave it here.
+import 'babel-polyfill'
 import './jitsi-meet/polyfills-bundler'
 
 import './app/app.tsx'
