@@ -278,8 +278,10 @@ function _synthesizeIPv6Addresses0(sessionDescription) {
                                 if (v && typeof v === 'string') {
                                     resolve(v);
                                 } else {
+                                    console.log("ip", ip);
                                     _synthesizeIPv6FromIPv4Address(ip).then(
                                         value => {
+                                            console.log("value", value);
                                             if (!value
                                                     || value.indexOf(':') === -1
                                                     || value === ips.get(ip)) {

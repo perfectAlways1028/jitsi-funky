@@ -44,7 +44,8 @@ public class MainApplication extends Application implements ReactApplication {
             new RNGestureHandlerPackage(),
             new SplashScreenReactPackage(),
             new RNLanguagesPackage(),
-            new KeychainPackage()
+            new KeychainPackage(),
+            new NAT64AddrInfoModulePackage()
       );
     }
 

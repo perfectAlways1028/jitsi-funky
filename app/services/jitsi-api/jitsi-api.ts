@@ -34,6 +34,7 @@ export class JitsiApi {
    */
   setup () {
     // construct the apisauce instance
+
     this.apisauce = create({
       baseURL: this.config.url,
       timeout: this.config.timeout,
@@ -48,9 +49,9 @@ export class JitsiApi {
    */
   async getOptions (room: string): Promise<any> {
     // make the api call
-
+    console.log("apisauce", this.config);
     const response: ApiResponse<any> = await this.apisauce.get(`/config.js?room=` + room)
-
+    console.log("response", response);
     // the typical ways to die when calling an api
     if (!response.ok) {
       const problem = getGeneralApiProblem(response)

@@ -19,9 +19,11 @@ export class VideoScreen extends React.Component<VideoScreenProps, VideoScreenSt
   }
 
   render () {
+    
     if (!this.props.stream) {
       return null
     }
+
 
     return (
       <RTCView

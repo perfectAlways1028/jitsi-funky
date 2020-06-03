@@ -51,9 +51,11 @@ export const ConnectionStoreModel = types
   .actions(self => ({
     connect: flow(function * createConnection () {
       let config = self.options
-
+      console.log("config", config);
       if (!config) {
+        console.log("room", self.conference.room);
         const response = yield getEnv(self).jitsiApi.getOptions(self.conference.room)
+        console.log("response", response);
         config = response.options
         if (getEnv(self).useOverrides) {
           const overrides = configOverrides()
@@ -69,6 +71,7 @@ export const ConnectionStoreModel = types
           config.bosh = 'http:' + config.bosh + '?room=' + self.conference.room
         }
       }
+      console.log("config", config);
 
       self.options = config
       const jitsiMeetJS = getEnv(self).jitsiMeetJS
