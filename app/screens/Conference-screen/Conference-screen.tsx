@@ -76,8 +76,13 @@ export class ConferenceScreen extends React.Component<ConferenceScreenProps, Con
           const videoTrack = tracks['video']
           const isDominantParticipant = dominantParticipant && participant._id === dominantParticipant._id
           const displayName = participant._displayName ? participant._displayName : 'anonymous'
+          var tpc = null;
+          if(audioTrack) {
+            tpc = audioTrack.isP2P ? this.props.connectionStore.conference.p2pJingleSession : this.props.connectionStore.conference.conference.jvbJingleSession;
+          }
+          
           thumbnails.push(
-            <ThumbnailScreen key={participant._id} id={participant._id} isDominantParticipant={isDominantParticipant} audioTrack={audioTrack} videoTrack={videoTrack} name={displayName}/>
+            <ThumbnailScreen key={participant._id} tpc={tpc} id={participant._id} isDominantParticipant={isDominantParticipant} audioTrack={audioTrack} videoTrack={videoTrack} name={displayName}/>
           )
         }
       }

@@ -73,7 +73,7 @@ export class ThumbnailScreen extends React.Component<ThumbnailScreenProps, {}> {
       }else if(value >0 && this.props.videoTrack.jitsiTrack.muted == true) {
         this.props.videoTrack.jitsiTrack.setMute(false);
       }
-      this.props.videoTrack.jitsiTrack.setAudioLevel(value);
+      this.props.videoTrack.jitsiTrack.setAudioLevel(value, this.props.tpc);
     }
     if(this.props.audioTrack) {
       if(value == 0 && this.props.videoTrack.jitsiTrack.muted == false) {
@@ -81,7 +81,7 @@ export class ThumbnailScreen extends React.Component<ThumbnailScreenProps, {}> {
       }else if(value >0 && this.props.videoTrack.jitsiTrack.muted == true) {
         this.props.audioTrack.jitsiTrack.setMute(false);
       }
-      this.props.audioTrack.jitsiTrack.setAudioLevel(value);
+      this.props.audioTrack.jitsiTrack.setAudioLevel(value, this.props.tpc);
     }
  
   }
@@ -95,7 +95,7 @@ export class ThumbnailScreen extends React.Component<ThumbnailScreenProps, {}> {
 
     console.log(this.props.name+ " audio:", this.props.audioTrack)
     console.log(this.props.name+ " video:", this.props.videoTrack)
-
+    console.log("tpc: ", this.props.tpc)
 
 
     return (
