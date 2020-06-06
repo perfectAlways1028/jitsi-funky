@@ -3,6 +3,7 @@ import { View, Text, ViewStyle, TextStyle } from 'react-native'
 import { VideoScreen } from '../Video-screen'
 import { AudioScreen } from '../Audio-screen'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
+import Slider from '@react-native-community/slider';
 
 export interface ThumbnailScreenProps {
   videoTrack: any;
@@ -41,13 +42,37 @@ const TEXT_VIEW: TextStyle = {
   color: 'white'
 }
 
+const AUDIO_VIEW: ViewStyle = {
+  position: 'absolute',
+  left: 0,
+  bottom: 5,
+}
+
+
 export class ThumbnailScreen extends React.Component<ThumbnailScreenProps, {}> {
+  constructor (props) {
+    super(props)
+    this.state = {
+      volume : 1
+    }
+  }
+
   renderVideoTrack = () => {
     if (this.props.videoTrack) {
       return <VideoScreen zOrder={0} stream={this.props.videoTrack.jitsiTrack.getOriginalStream()} />
     } else {
       return null
     }
+  }
+  volumeChange = (value) => {
+    this.setState({volume: value});
+    if(this.props.videoTrack) {
+      this.props.videoTrack.jitsiTrack.setAudioLevel(value);
+    }
+    if(this.props.audioTrack) {
+      this.props.audioTrack.jitsiTrack.setAudioLevel(value);
+    }
+ 
   }
 
   render () {
@@ -57,18 +82,37 @@ export class ThumbnailScreen extends React.Component<ThumbnailScreenProps, {}> {
       borderColor = 'blue'
     }
 
+    console.log(this.props.name+ " audio:", this.props.audioTrack)
+    console.log(this.props.name+ " video:", this.props.videoTrack)
+
+
+
     return (
       <View style={CONTAINER_VIEW}>
         <Text style={TEXT_VIEW}>
           {this.props.name}
         </Text>
         <View style={TRACKS_VIEW}>
-          { this.props.audioTrack && !this.props.audioTrack.local && <AudioScreen stream={this.props.audioTrack.jitsiTrack.getOriginalStream()}/> }
           <View style={[VIDEO_VIEW, { borderColor: borderColor }]}>
             { this.renderVideoTrack() }
             <View style={DOMINANT_ICON_VIEW}>
               { this.props.isDominantParticipant && <Icon name={'phone-in-talk'} color='blue' size={20}/> }
             </View>
+            {
+              !(this.props.audioTrack && this.props.audioTrack.local) &&
+              <View style={AUDIO_VIEW}>
+                <Slider
+                    style={{width: 100, height: 10}}
+                    minimumValue={0}
+                    maximumValue={1}
+                    minimumTrackTintColor="#FFFFFF"
+                    maximumTrackTintColor="#000000"
+                    value={this.state.volume}
+                    onValueChange={(value)=> { this.volumeChange(value); }}/>
+              
+            </View>
+            }
+
           </View>
         </View>
       </View>

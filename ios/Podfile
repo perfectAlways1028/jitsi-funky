@@ -4,6 +4,8 @@ platform :ios, '10.0'
 target 'JitsiFunky' do
 
   # Add new pods below this line
+  pod 'react-native-slider', :path => '../node_modules/@react-native-community/slider'
+
   #pod 'JitsiMeetSDK'
 
 
