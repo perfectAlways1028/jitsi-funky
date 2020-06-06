@@ -66,10 +66,21 @@ export class ThumbnailScreen extends React.Component<ThumbnailScreenProps, {}> {
   }
   volumeChange = (value) => {
     this.setState({volume: value});
+
     if(this.props.videoTrack) {
+      if(value == 0 && this.props.videoTrack.jitsiTrack.muted == false) {
+        this.props.videoTrack.jitsiTrack.setMute(true);
+      }else if(value >0 && this.props.videoTrack.jitsiTrack.muted == true) {
+        this.props.videoTrack.jitsiTrack.setMute(false);
+      }
       this.props.videoTrack.jitsiTrack.setAudioLevel(value);
     }
     if(this.props.audioTrack) {
+      if(value == 0 && this.props.videoTrack.jitsiTrack.muted == false) {
+        this.props.audioTrack.jitsiTrack.setMute(true);
+      }else if(value >0 && this.props.videoTrack.jitsiTrack.muted == true) {
+        this.props.audioTrack.jitsiTrack.setMute(false);
+      }
       this.props.audioTrack.jitsiTrack.setAudioLevel(value);
     }
  
