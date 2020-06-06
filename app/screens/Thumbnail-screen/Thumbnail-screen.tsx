@@ -96,6 +96,8 @@ export class ThumbnailScreen extends React.Component<ThumbnailScreenProps, {}> {
     console.log(this.props.name+ " audio:", this.props.audioTrack)
     console.log(this.props.name+ " video:", this.props.videoTrack)
     console.log("tpc: ", this.props.tpc)
+    if( this.props.videoTrack)
+    console.log("streamUrl",  this.props.videoTrack.jitsiTrack.getOriginalStream().toURL() )
 
 
     return (
